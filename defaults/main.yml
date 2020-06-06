@@ -1,0 +1,26 @@
+---
+# defaults file for usb_hid_descriptor_tool
+
+# Path to an release archive of USB HID Descriptor Tool on a control host or
+# URL to download the archive from.
+usb_hid_descriptor_tool_archive_src: ""
+
+# By default installs the program. Set to "absent" to uninstall.
+usb_hid_descriptor_tool_state: present
+
+# Base name of installation directory and name part of a desktop file. If set
+# to empty, top level of release archive is used instead.
+usb_hid_descriptor_tool_top_dest_name: USB_HID_Descriptor_Tool
+
+# Parent directory in which program will be installed. See also
+# `usb_hid_descriptor_tool_top_dest_name`.
+usb_hid_descriptor_tool_install_parent_dir: /opt
+
+# Parent directory in which desktop file will be installed. See also
+# `usb_hid_descriptor_tool_top_dest_name`.
+usb_hid_descriptor_tool_desktop_parent_dir: /usr/local/share/applications
+
+# If set to "yes", contents of installation directory and desktop file are not
+# compared against contents of `usb_hid_descriptor_tool_archive_src` when uninstall,
+# upgrade or downgrade.
+usb_hid_descriptor_tool_force_remove: no

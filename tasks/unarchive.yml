@@ -1,0 +1,35 @@
+---
+# unarchive tasks file for usb_hid_descriptor_tool
+- name: Create a temporary directory for unarchive
+  tempfile:
+    state: directory
+  register: usb_hid_descriptor_tool_temp_dir
+  notify: Remove a temporary USB HID Descriptor Tool directory for unarchive
+  when: not ansible_check_mode
+
+- name: Fail if archive src is not set
+  fail:
+    msg: To unarchive usb_hid_descriptor_tool_archive_src must be set
+  when: usb_hid_descriptor_tool_archive_src | length == 0
+
+- name: Unarchive the source archive
+  unarchive:
+    src: "{{ usb_hid_descriptor_tool_archive_src }}"
+    dest: "{{ usb_hid_descriptor_tool_temp_dir.path }}"
+    list_files: yes
+    remote_src: "{{ '://' in usb_hid_descriptor_tool_archive_src }}"
+  register: usb_hid_descriptor_tool_unarchived_content
+  when: not ansible_check_mode
+
+- name: Stat archive subdir
+  stat:
+    path: "{{ usb_hid_descriptor_tool_temp_dir.path }}/{{ subdir_src_name }}"
+  register: unarchived_subdir
+  when: not ansible_check_mode
+
+- name: Fail if subdir does not exist
+  fail:
+    msg: Archive does contain expected subdirectory
+  when:
+    - not ansible_check_mode
+    - not unarchived_subdir.stat.exists

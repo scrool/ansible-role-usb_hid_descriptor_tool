@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Pavol Babinčák
+  role_name: usb_hid_descriptor_tool
+  description: >
+    Installs or uninstalls USB HID Descriptor - a tool to create, edit and
+    validate HID Report Descriptors.
+  company: none
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Fedora
+      versions:
+        - 31
+
+  galaxy_tags:
+    - desktop
+
+dependencies: []

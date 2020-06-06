@@ -1,0 +1,14 @@
+---
+# vars file for usb_hid_descriptor_tool
+subdir_src_name: MSDEV/Projects/test
+top_dest_name: "{{ usb_hid_descriptor_tool_top_dest_name }}"
+
+install_dest_full: "{{ usb_hid_descriptor_tool_install_parent_dir }}/{{ top_dest_name }}"
+
+tmp_desktop_file_full: "{{ usb_hid_descriptor_tool_desktop_tmp_directory.path }}/{{ top_dest_name }}.desktop"
+desktop_file_full: "{{ usb_hid_descriptor_tool_desktop_parent_dir }}/{{ top_dest_name }}.desktop"
+
+tmp_icon_file_full: "{{ usb_hid_descriptor_tool_icon_tmp_directory.path }}/{{ top_dest_name }}.ico"
+icon_file_full: "{{ install_dest_full }}/{{ top_dest_name }}.ico"
+
+tmp_executable_full: "{{ usb_hid_descriptor_tool_temp_dir.path }}/{{ subdir_src_name }}/Dt.exe"

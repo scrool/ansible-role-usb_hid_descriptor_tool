@@ -1,0 +1,37 @@
+---
+# handlers file for usb_hid_descriptor_tool
+- name: Remove a temporary USB HID Descriptor Tool directory for unarchive
+  become: yes
+  file:
+    name: "{{ usb_hid_descriptor_tool_temp_dir.path }}"
+    state: absent
+
+- name: Remove temporary USB HID Descriptor Tool desktop directory
+  become: yes
+  file:
+    name: "{{ usb_hid_descriptor_tool_desktop_tmp_directory.path }}"
+    state: absent
+
+- name: Remove temporary USB HID Descriptor Tool icon directory
+  become: yes
+  file:
+    name: "{{ usb_hid_descriptor_tool_icon_tmp_directory.path }}"
+    state: absent
+
+- name: Remove rsync
+  become: yes
+  package:
+    name: rsync
+    state: absent
+
+- name: Remove icoutils
+  become: yes
+  package:
+    name: icoutils
+    state: absent
+
+- name: Remove desktop-file-utils
+  become: yes
+  package:
+    name: desktop-file-utils
+    state: absent

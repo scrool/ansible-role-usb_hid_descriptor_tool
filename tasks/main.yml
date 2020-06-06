@@ -1,0 +1,22 @@
+---
+# tasks file for usb_hid_descriptor_tool
+- name: Fail if desired state is invalid
+  fail:
+    msg: State variable must be either "present" or "absent"
+  when: usb_hid_descriptor_tool_state not in ["present", "absent"]
+
+- name: Uninstall tasks of USB HID Descriptor Tool
+  include_tasks: uninstall.yml
+  when:
+    - usb_hid_descriptor_tool_state == "absent"
+    - usb_hid_descriptor_tool_force_remove | bool
+
+- name: Install tasks of USB HID Descriptor Tool
+  include_tasks: install.yml
+  when: usb_hid_descriptor_tool_state == "present"
+
+- name: Safe uninstall tasks of USB HID Descriptor Tool
+  include_tasks: safe_uninstall.yml
+  when:
+    - usb_hid_descriptor_tool_state == "absent"
+    - not (usb_hid_descriptor_tool_force_remove | bool)

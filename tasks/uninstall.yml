@@ -1,0 +1,24 @@
+---
+# uninstall tasks file for usb_hid_descriptor_tool
+- name: Fail if override is not set and force remove is set
+  fail:
+    msg: If force remove is set, usb_hid_descriptor_tool_top_dest_name must be defined as well
+  when: usb_hid_descriptor_tool_top_dest_name | length == 0
+
+- name: Remove installed desktop file
+  become: yes
+  file:
+    name: "{{ desktop_file_full }}"
+    state: absent
+
+- name: Remove installed icon file
+  become: yes
+  file:
+    name: "{{ icon_file_full }}"
+    state: absent
+
+- name: Remove installed content
+  become: yes
+  file:
+    name: "{{ install_dest_full }}"
+    state: absent
